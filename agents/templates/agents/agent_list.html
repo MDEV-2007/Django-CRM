@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="bg-gray-100 text-gray-600 body-font">
+    <div class="container mx-auto px-5 py-16">
+        
+        <div class="flex flex-wrap justify-between items-center border-b border-gray-300 pb-6 mb-8">
+            <h1 class="text-3xl sm:text-4xl font-semibold text-gray-800">Our Agents</h1>
+            <a href="{% url 'agents:agent-create' %}" 
+               class="inline-block bg-indigo-500 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                Create a New Agent
+            </a>
+        </div>
+
+   
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for agent in object_list %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6 flex items-center">
+                 
+                    <div class="w-16 h-16 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 mr-6">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-xl font-medium text-gray-800 mb-2">{{ agent.user.username }}</h2>
+                        <a href="{% url 'agents:agent-detail' agent.pk %}" 
+                           class="text-indigo-500 font-medium hover:underline flex items-center">
+                            View this Agent
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            
+            <p class="text-center text-gray-500 col-span-full">No agents available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<section class="bg-gray-100 text-gray-600 body-font overflow-hidden">
+    <div class="container px-5 py-16 mx-auto">
+        <div class="lg:w-4/5 mx-auto flex flex-wrap uppercase rounded-lg overflow-hidden">
+
+            <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 p-6">
+                <h2 class="text-sm title-font text-gray-500 tracking-widest uppercase font-semibold">Agent</h2>
+                <h1 class="text-gray-900 text-3xl title-font font-bold mb-4">{{ agent.user.username }}</h1>
+
+                <div class="flex mb-6 border-b border-gray-200">
+                    <a href="{% url 'agents:agent-detail' agent.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg font-medium">Overview</a>
+                    <a href="#" class="flex-grow text-gray-600 hover:text-indigo-500 border-b-2 border-transparent py-2 text-lg font-medium">Reviews</a>
+                    <a href="{% url 'agents:agent-update' agent.pk %}" class="flex-grow text-gray-600 hover:text-indigo-500 border-b-2 border-transparent py-2 text-lg font-medium">Update Details</a>
+                </div>
+
+                <p class="leading-relaxed mb-6 text-gray-700">
+                    Fam locavore kickstarter distillery. Mixtape chillwave turmeric sriracha taximy chia microdosing tilde DIY. Gastropub blue bottle listicle pour-over neutra jean.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between border-t border-gray-200 py-2">
+                        <span class="text-gray-500">Age</span>
+                        <span class="text-gray-900">{{ lead.age }}</span>
+                    </div>
+                    <div class="flex justify-between border-t border-gray-200 py-2">
+                        <span class="text-gray-500">Location</span>
+                        <span class="text-gray-900">Dummy location</span>
+                    </div>
+                    <div class="flex justify-between border-t border-b border-gray-200 py-2">
+                        <span class="text-gray-500">Cell Phone</span>
+                        <span class="text-gray-900">+998 77 555 55 55</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center mt-6">
+                    <button class="ml-auto text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-lg py-2 px-6 text-sm font-medium transition-all duration-300">
+                        Take Action
+                    </button>
+                    <button class="ml-4 rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-all duration-300">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 w-full">
+                <img alt="Agent Profile" class="w-full h-full object-cover object-center rounded-lg" src="https://dummyimage.com/400x400">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

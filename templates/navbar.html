@@ -1,0 +1,73 @@
+<header class="text-white body-font bg-gradient-to-r from-blue-500 to-indigo-600 shadow-xl">
+  <div class="container mx-auto flex flex-wrap p-6 items-center justify-between">
+    
+    <a href="/" class="flex title-font font-bold items-center text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-12 h-12 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-2xl font-semibold tracking-tight">MDEV CRM</span>
+    </a>
+
+    
+    <div class="flex items-center space-x-6">
+      {% if request.user.is_authenticated %}
+        <span class="text-lg font-medium uppercase">{{ request.user.username }}</span>
+        {% if request.user.is_authenticated and request.user.is_agent %}
+        <a href="{% url 'agents:agent-list' %}" class="text-white hover:text-indigo-100 transition duration-200">Agent</a>
+         {% endif %}
+        <a href="{% url 'leads:lead-list' %}" class="text-white hover:text-indigo-100 transition duration-200">Leads</a>
+        
+        <div class="relative">
+          <button id="profileButton" class="inline-flex items-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none">
+            Profile
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+
+          <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg hidden">
+            <a href="#" class="block px-4 py-2 text-sm">My Profile</a>
+           
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button class="block px-4 py-2 text-sm text-red-600" type="submit">Logout</button>
+          </form>
+           
+          </div>
+        </div>
+
+      {% else %}
+        <nav class="md:ml-auto flex space-x-6">
+          <a href="{% url 'signup' %}" class="text-white hover:text-indigo-100 transition duration-200">Signup</a>
+        </nav>
+        <a href="{% url 'login' %}" class="inline-flex items-center bg-gray-400 text-white border-0 py-2 px-6 rounded-full text-base hover:bg-indigo-700 focus:outline-none transition duration-200">
+          Login
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<script>
+
+  const profileButton = document.getElementById('profileButton');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  
+  profileButton.addEventListener('click', function() {
+    dropdownMenu.classList.toggle('hidden');
+  });
+
+  window.addEventListener('click', function(event) {
+    if (!profileButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+
+
+
+
+
+</script>

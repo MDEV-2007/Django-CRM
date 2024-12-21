@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<style>
+  input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+
+  input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+
+
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="number"]:focus {
+    border-color: #ff9800;
+    outline: none;
+  }
+
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 48%;
+    margin-right: 4%;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .delete-btn {
+    background-color: #e53935;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 48%;
+    margin-left: 4%;
+    transition: background-color 0.3s ease;
+  }
+
+  .delete-btn:hover {
+    background-color: #d32f2f;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease;
+  }
+
+  select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+
+  option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+  }
+
+  option:hover {
+    background-color: #f0f0f0;
+  }
+
+
+
+
+</style>
+
+<section class="text-gray-600 body-font overflow-hidden bg-gray-100 text-gray-600">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">Lead</h2>
+          <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{lead.first_name}} {{lead.last_name}}</h1>
+          <div class="flex mb-4">
+            <a href="{% url 'leads:lead-detail' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Overview</a>
+            <a href="" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Reviews</a>
+            <a href="{% url 'leads:lead-update' lead.pk %}" class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">Update Details</a>
+          </div>
+          <h1>Update Lead : {{lead.first_name}} {{lead.last_name}}</h1>
+          <form method="post">
+              {% csrf_token %}
+              {{form.as_p}}
+              <button type="submit">Update Data</button>
+              <a href="{% url 'leads:lead-delete' lead.pk %}" class="delete-btn">Delete</a>
+          </form>
+        </div>
+        <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+      </div>
+    </div>
+  </section>
+  
+{% endblock %}
