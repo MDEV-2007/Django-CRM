@@ -30,7 +30,6 @@ class SignupView(SuccessMessageMixin, CreateView):
 
     def form_invalid(self, form):
         """Override form_invalid to handle form errors."""
-        # Add form errors to Django messages
         for field, errors in form.errors.items():
             for error in errors:
                 messages.error(self.request, error)
@@ -211,18 +210,6 @@ def lead_delete(request, pk):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # def lead_update(request, pk):
 #     lead = Leads.objects.get(id=pk)
 #     form = LeadForm()
@@ -262,7 +249,8 @@ def lead_delete(request, pk):
 #                 first_name=first_name,
 #                 last_name=last_name,
 #                 age=age,
-#                 agent=agent
+#                 agent=agenT 
+
 #             )
 #             print('Successfully created')
 #             return redirect('/leads')
